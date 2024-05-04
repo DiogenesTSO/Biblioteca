@@ -27,8 +27,6 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(unique = true)
-	private Integer matricula;
     private String nome;
     
     @Column(unique = true)
@@ -37,7 +35,7 @@ public class Usuario implements Serializable {
     private Status status;
     
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "perfil")
+    @CollectionTable(name = "perfil_user")
     private Set<Integer> perfis = new HashSet<>();
     
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -47,10 +45,9 @@ public class Usuario implements Serializable {
 		super();
 	}
 
-	public Usuario(Integer id, Integer matricula, String nome, String usuario, String senha, Status status) {
+	public Usuario(Integer id, String nome, String usuario, String senha, Status status) {
 		super();
 		this.id = id;
-		this.matricula = matricula;
 		this.nome = nome;
 		this.usuario = usuario;
 		this.senha = senha;
@@ -63,14 +60,6 @@ public class Usuario implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	
-	public Integer getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(Integer matricula) {
-		this.matricula = matricula;
 	}
 
 	public String getNome() {

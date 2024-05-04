@@ -15,20 +15,21 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Emprestimo implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String titulo;
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataEmprestimo = LocalDate.now();
+	private LocalDate dataEmprestimo = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataDevolucao = LocalDate.now();
+	private LocalDate dataDevolucao = LocalDate.now();
+
 	
 	@ManyToOne
 	@JoinColumn(name = "aluno_id")
-	private Alunos alunos;
+	private Alunos alunos; 
 
 	public Emprestimo() {
 		super();
@@ -73,15 +74,13 @@ public class Emprestimo implements Serializable {
 		this.dataDevolucao = dataDevolucao;
 	}
 
+	
 	public Alunos getAlunos() {
 		return alunos;
 	}
 
 	public void setAlunos(Alunos alunos) {
 		this.alunos = alunos;
-	}
-	
-	
-	
-	
+	} 
+
 }
