@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import com.dto.biblioteca.domain.dtos.AlunoDTO;
 import com.dto.biblioteca.domain.enums.Perfil;
 import com.dto.biblioteca.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -64,6 +66,18 @@ public class Alunos implements Serializable {
 		this.usuario = usuario;
 		this.senha = senha;
 		this.status = status;
+	}
+	
+	public Alunos(AlunoDTO obj) {
+		super();
+		this.id = obj.getId();
+		this.matricula = obj.getMatricula();
+		this.nome = obj.getNome();
+		this.usuario = obj.getUsuario();
+		this.senha = obj.getSenha();
+		this.status = obj.getStatus();
+		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.dataCriacao = obj.getDataCriacao();
 	}
 
 	public List<Emprestimo> getEmprestimos() {

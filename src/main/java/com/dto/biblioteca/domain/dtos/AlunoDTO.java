@@ -26,6 +26,7 @@ public class AlunoDTO implements Serializable {
 
 	public AlunoDTO() {
 		super();
+		addPerfil(Perfil.ALUNO);
 	}
 
 	public AlunoDTO(Alunos obj) {
@@ -38,6 +39,7 @@ public class AlunoDTO implements Serializable {
 		this.status = obj.getStatus();
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
+		addPerfil(Perfil.ALUNO);
 	}
 
 	public Integer getId() {
