@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.dto.biblioteca.domain.Alunos;
 import com.dto.biblioteca.repositories.AlunosRepository;
+import com.dto.biblioteca.services.exception.ObjectNotFoundException;
 
 @Service
 public class AlunoService {
@@ -14,6 +15,6 @@ public class AlunoService {
 
 	public Alunos findById(Integer id) {
 		Optional<Alunos> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " +id));
 	}
 }

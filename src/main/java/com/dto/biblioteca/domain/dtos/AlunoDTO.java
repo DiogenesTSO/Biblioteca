@@ -5,14 +5,13 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import com.dto.biblioteca.domain.Alunos;
 import com.dto.biblioteca.domain.enums.Perfil;
 import com.dto.biblioteca.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AlunoDTO implements Serializable {
-	private static final long serialVersionUID = 1L; 
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 	private Integer matricula;
@@ -21,10 +20,10 @@ public class AlunoDTO implements Serializable {
 	private String senha;
 	private Status status;
 	private Set<Integer> perfis = new HashSet<>();
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataCriacao = LocalDate.now();
-	
+
 	public AlunoDTO() {
 		super();
 	}
@@ -104,9 +103,5 @@ public class AlunoDTO implements Serializable {
 	public void setDataCriacao(LocalDate dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-	
-	
-	
-	
-	
+
 }

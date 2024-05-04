@@ -129,7 +129,7 @@ public class Alunos implements Serializable {
 	public void addPerfil(Perfil perfil) {
 		this.perfis.add(perfil.getCodigo());
 	}
-	
+
 	public LocalDate getDataCriacao() {
 		return dataCriacao;
 	}
