@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Profile;
 
 import com.dto.biblioteca.services.DBService;
 
+//Configuração do ambiente de teste
+
 @Configuration
 @Profile("test")
 public class TestConfig {
