@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import com.dto.biblioteca.domain.enums.Perfil;
 import com.dto.biblioteca.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -22,26 +21,26 @@ import jakarta.persistence.Id;
 @Entity
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-    private String nome;
-    
-    @Column(unique = true)
-    private String usuario;
-    private String senha;
-    private Status status;
-    
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "perfil_user")
-    private Set<Integer> perfis = new HashSet<>();
-    
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataCriacao = LocalDate.now();
-	
-    public Usuario() {
+
+	private String nome;
+
+	@Column(unique = true)
+	private String usuario;
+	private String senha;
+	private Status status;
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "perfil_user")
+	private Set<Integer> perfis = new HashSet<>();
+
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate dataCriacao = LocalDate.now();
+
+	public Usuario() {
 		super();
 	}
 
@@ -53,7 +52,7 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 		this.status = status;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -101,7 +100,7 @@ public class Usuario implements Serializable {
 	public void setDataCriacao(LocalDate dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-		
+
 	public Status getStatus() {
 		return status;
 	}
@@ -126,7 +125,5 @@ public class Usuario implements Serializable {
 		Usuario other = (Usuario) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-    
+
 }

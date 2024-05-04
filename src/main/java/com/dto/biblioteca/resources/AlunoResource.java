@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.dto.biblioteca.domain.Alunos;
+import com.dto.biblioteca.domain.dtos.AlunoDTO;
 import com.dto.biblioteca.services.AlunoService;
 
 @RestController
@@ -20,8 +20,8 @@ public class AlunoResource {
 	private AlunoService service;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Alunos> findById(@PathVariable Integer id) {
+	public ResponseEntity<AlunoDTO> findById(@PathVariable Integer id) {
 		Alunos obj = this.service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new AlunoDTO(obj));
 	}
 }

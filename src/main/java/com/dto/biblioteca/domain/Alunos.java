@@ -8,12 +8,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
-import jakarta.persistence.JoinColumn;
 import com.dto.biblioteca.domain.enums.Perfil;
 import com.dto.biblioteca.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -35,7 +33,7 @@ public class Alunos implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(unique = true)
 	private Integer matricula;
 	private String nome;
@@ -51,7 +49,7 @@ public class Alunos implements Serializable {
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataCriacao = LocalDate.now();
-	
+
 	public Alunos() {
 		super();
 	}
@@ -74,7 +72,7 @@ public class Alunos implements Serializable {
 
 	public void setEmprestimos(List<Emprestimo> emprestimos) {
 		this.emprestimos = emprestimos;
-	} 
+	}
 
 	public Integer getId() {
 		return id;
@@ -132,6 +130,14 @@ public class Alunos implements Serializable {
 		this.perfis.add(perfil.getCodigo());
 	}
 	
+	public LocalDate getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(LocalDate dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, matricula);

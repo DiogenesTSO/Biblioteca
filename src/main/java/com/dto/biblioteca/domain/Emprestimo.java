@@ -26,10 +26,9 @@ public class Emprestimo implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataDevolucao = LocalDate.now();
 
-	
 	@ManyToOne
 	@JoinColumn(name = "aluno_id")
-	private Alunos alunos; 
+	private Alunos alunos;
 
 	public Emprestimo() {
 		super();
@@ -74,13 +73,12 @@ public class Emprestimo implements Serializable {
 		this.dataDevolucao = dataDevolucao;
 	}
 
-	
 	public Alunos getAlunos() {
 		return alunos;
 	}
 
 	public void setAlunos(Alunos alunos) {
 		this.alunos = alunos;
-	} 
+	}
 
 }
