@@ -10,13 +10,19 @@ import com.dto.biblioteca.domain.enums.Perfil;
 import com.dto.biblioteca.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.NotNull;
+
 public class AlunoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
+	@NotNull(message = "Campo MATRICULA é obrigatório")
 	private Integer matricula;
+	@NotNull(message = "Campo NOME é obrigatório")
 	private String nome;
+	@NotNull(message = "Campo USUARIO é obrigatório")
 	private String usuario;
+	@NotNull(message = "Campo SENHA é obrigatório")
 	private String senha;
 	private Status status;
 	private Set<Integer> perfis = new HashSet<>();

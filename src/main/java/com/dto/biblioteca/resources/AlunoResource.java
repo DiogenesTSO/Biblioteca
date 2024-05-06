@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.dto.biblioteca.domain.Alunos;
 import com.dto.biblioteca.domain.dtos.AlunoDTO;
 import com.dto.biblioteca.services.AlunoService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/alunos")
@@ -41,9 +44,15 @@ public class AlunoResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<AlunoDTO> create(@RequestBody AlunoDTO objDTO) {
+	public ResponseEntity<AlunoDTO> create(@Valid @RequestBody AlunoDTO objDTO) {
 		Alunos newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<AlunoDTO> update(@PathVariable Integer id, @Valid @RequestBody AlunoDTO objDTO) {
+		Alunos obj = service.update(id, objDTO);
+		return ResponseEntity.ok().body(new AlunoDTO(obj));
 	}
 }
