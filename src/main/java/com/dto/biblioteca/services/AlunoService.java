@@ -43,6 +43,14 @@ public class AlunoService {
 		return repository.save(oldObj);
 	}
 
+	public void delete(Integer id) {
+		Alunos obj = findById(id);
+		if (obj.getEmprestimos().size() > 0) {
+			throw new DataIntegrtyViolationException("Aluno possui livros emprestados!");
+		}
+		repository.deleteById(id);
+	}
+
 	private void validaMatricula(AlunoDTO objDTO) {
 		Optional<Alunos> obj = repository.findByMatricula(objDTO.getMatricula());
 		if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {

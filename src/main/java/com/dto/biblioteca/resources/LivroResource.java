@@ -15,50 +15,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import com.dto.biblioteca.domain.Alunos;
-import com.dto.biblioteca.domain.dtos.AlunoDTO;
-import com.dto.biblioteca.services.AlunoService;
+import com.dto.biblioteca.domain.Livros;
+import com.dto.biblioteca.domain.dtos.LivroDTO;
+import com.dto.biblioteca.services.LivroService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/alunos")
-public class AlunoResource {
+@RequestMapping(value = "/livros")
+public class LivroResource {
 
-	// localhost:8080/alunos/1
+	// localhost:8080/livros/1
 
 	@Autowired
-	private AlunoService service;
+	private LivroService service;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<AlunoDTO> findById(@PathVariable Integer id) {
-		Alunos obj = this.service.findById(id);
-		return ResponseEntity.ok().body(new AlunoDTO(obj));
+	public ResponseEntity<LivroDTO> findById(@PathVariable Integer id) {
+		Livros obj = this.service.findById(id);
+		return ResponseEntity.ok().body(new LivroDTO(obj));
 	}
 
 	@GetMapping
-	public ResponseEntity<List<AlunoDTO>> findAll() {
-		List<Alunos> list = service.findAll();
-		List<AlunoDTO> listDTO = list.stream().map(obj -> new AlunoDTO(obj)).collect(Collectors.toList());
+	public ResponseEntity<List<LivroDTO>> findAll() {
+		List<Livros> list = service.findAll();
+		List<LivroDTO> listDTO = list.stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 
 	@PostMapping
-	public ResponseEntity<AlunoDTO> create(@Valid @RequestBody AlunoDTO objDTO) {
-		Alunos newObj = service.create(objDTO);
+	public ResponseEntity<LivroDTO> create(@Valid @RequestBody LivroDTO objDTO) {
+		Livros newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<AlunoDTO> update(@PathVariable Integer id, @Valid @RequestBody AlunoDTO objDTO) {
-		Alunos obj = service.update(id, objDTO);
-		return ResponseEntity.ok().body(new AlunoDTO(obj));
+	public ResponseEntity<LivroDTO> update(@PathVariable Integer id, @Valid @RequestBody LivroDTO objDTO) {
+		Livros obj = service.update(id, objDTO);
+		return ResponseEntity.ok().body(new LivroDTO(obj));
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<AlunoDTO> delete(@PathVariable Integer id) {
+	public ResponseEntity<LivroDTO> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

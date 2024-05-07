@@ -27,6 +27,10 @@ public class Emprestimo implements Serializable {
 	private LocalDate dataDevolucao = LocalDate.now();
 
 	@ManyToOne
+	@JoinColumn(name = "livro_id")
+	private Livros livros;
+
+	@ManyToOne
 	@JoinColumn(name = "aluno_id")
 	private Alunos alunos;
 
@@ -34,11 +38,12 @@ public class Emprestimo implements Serializable {
 		super();
 	}
 
-	public Emprestimo(Integer id, String titulo, Alunos alunos) {
+	public Emprestimo(Integer id, String titulo, Alunos alunos, Livros livros) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.alunos = alunos;
+		this.livros = livros;
 	}
 
 	public Integer getId() {
@@ -79,6 +84,14 @@ public class Emprestimo implements Serializable {
 
 	public void setAlunos(Alunos alunos) {
 		this.alunos = alunos;
+	}
+
+	public Livros getLivros() {
+		return livros;
+	}
+
+	public void setLivros(Livros livros) {
+		this.livros = livros;
 	}
 
 }

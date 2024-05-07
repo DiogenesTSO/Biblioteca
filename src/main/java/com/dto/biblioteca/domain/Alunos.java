@@ -67,7 +67,7 @@ public class Alunos implements Serializable {
 		this.senha = senha;
 		this.status = status;
 	}
-	
+
 	public Alunos(AlunoDTO obj) {
 		super();
 		this.id = obj.getId();
