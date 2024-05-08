@@ -38,6 +38,13 @@ public class EmprestimoService {
 	public Emprestimo create(@Valid EmprestimoDTO objDTO) {
 		return repository.save(newEmprestimo(objDTO));
 	}
+	
+	public Emprestimo update(Integer id, @Valid EmprestimoDTO objDTO) {
+		objDTO.setId(id);
+		Emprestimo oldObj = findById(id);
+		oldObj = newEmprestimo(objDTO);
+		return repository.save(oldObj);
+	}
 
 	private Emprestimo newEmprestimo(EmprestimoDTO obj) {
 		Alunos alunos = alunoService.findById(obj.getAlunos());
@@ -52,5 +59,7 @@ public class EmprestimoService {
 		emprestimo.setLivros(livros);
 		return emprestimo;
 	}
+
+	
 
 }
