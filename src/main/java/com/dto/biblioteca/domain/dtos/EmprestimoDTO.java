@@ -9,7 +9,6 @@ public class EmprestimoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private String titulo;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataEmprestimo = LocalDate.now();
@@ -28,7 +27,6 @@ public class EmprestimoDTO implements Serializable {
 	public EmprestimoDTO(Emprestimo obj) {
 		super();
 		this.id = obj.getId();
-		this.titulo = obj.getTitulo();
 		this.dataEmprestimo = obj.getDataEmprestimo();
 		this.dataDevolucao = obj.getDataDevolucao();
 		this.livros = obj.getLivros().getId();
@@ -43,14 +41,6 @@ public class EmprestimoDTO implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
 	}
 
 	public LocalDate getDataEmprestimo() {

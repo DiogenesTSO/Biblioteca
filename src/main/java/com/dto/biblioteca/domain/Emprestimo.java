@@ -19,7 +19,6 @@ public class Emprestimo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String titulo;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataEmprestimo = LocalDate.now();
@@ -38,10 +37,9 @@ public class Emprestimo implements Serializable {
 		super();
 	}
 
-	public Emprestimo(Integer id, String titulo, Alunos alunos, Livros livros) {
+	public Emprestimo(Integer id, Alunos alunos, Livros livros) {
 		super();
 		this.id = id;
-		this.titulo = titulo;
 		this.alunos = alunos;
 		this.livros = livros;
 	}
@@ -52,14 +50,6 @@ public class Emprestimo implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
 	}
 
 	public LocalDate getDataEmprestimo() {

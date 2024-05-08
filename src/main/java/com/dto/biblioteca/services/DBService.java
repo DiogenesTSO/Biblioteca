@@ -45,11 +45,12 @@ public class DBService {
 		Livros liv2 = new Livros(null, "Arquitetura Limpa", "Robert C. Martin", "Programação", 2009, 5);
 		livrosRepository.saveAll(Arrays.asList(liv1, liv2));
 
-		Emprestimo emp1 = new Emprestimo(null, "Código Limpo", alun1, liv1);
+		Emprestimo emp1 = new Emprestimo(null, alun1, liv1);
+		Emprestimo emp2 = new Emprestimo(null, alun2, liv2);
 
 		usuarioRepository.saveAll(Arrays.asList(user1, user2));
 		alunosRepository.saveAll(Arrays.asList(alun1, alun2));
-		emprestimoRepository.saveAll(Arrays.asList(emp1));
+		emprestimoRepository.saveAll(Arrays.asList(emp1, emp2));
 
 	}
 }
