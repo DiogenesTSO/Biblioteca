@@ -13,10 +13,11 @@ public class EmprestimoDTO implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataEmprestimo = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate dataDevolucao = LocalDate.now();
+	private LocalDate dataDevolucao = dataEmprestimo.plusDays(15);
 
 	private Integer livros;
 	private Integer alunos;
+	private Integer matricula;
 	private String nomeAluno;
 	private String nomeLivro;
 
@@ -31,6 +32,7 @@ public class EmprestimoDTO implements Serializable {
 		this.dataDevolucao = obj.getDataDevolucao();
 		this.livros = obj.getLivros().getId();
 		this.alunos = obj.getAlunos().getId();
+		this.matricula = obj.getAlunos().getMatricula();
 		this.nomeAluno = obj.getAlunos().getNome();
 		this.nomeLivro = obj.getLivros().getTitulo();
 	}
@@ -73,6 +75,14 @@ public class EmprestimoDTO implements Serializable {
 
 	public void setAlunos(Integer alunos) {
 		this.alunos = alunos;
+	}
+
+	public Integer getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(Integer matricula) {
+		this.matricula = matricula;
 	}
 
 	public String getNomeAluno() {

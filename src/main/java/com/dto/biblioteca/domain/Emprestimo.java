@@ -23,7 +23,7 @@ public class Emprestimo implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataEmprestimo = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate dataDevolucao = LocalDate.now();
+	private LocalDate dataDevolucao = dataEmprestimo.plusDays(15);
 
 	@ManyToOne
 	@JoinColumn(name = "livro_id")
